@@ -1,9 +1,23 @@
 ﻿open System;
 
-let randomNumbers = [2; 3; 7; 8]
+let inputNumbers = [1; 2; 3;]
+printfn "randomNumbers: %A" inputNumbers
 
-printfn "%A" randomNumbers
+// the yield construct may only be used within list, array, or sequence expressions
+// i.e. expressions of the form [..], [|..|], seq {..}
+// these use the syntax for .. in .. do .. yield
 
-for n in randomNumbers do
-    Console.Write("About to Check ")
-    Console.WriteLine(n)
+let numList = [
+    for n in inputNumbers do
+        printfn "List Check %i" n
+        yield n
+]
+
+let numArray = [|
+    for n in inputNumbers do
+    printfn "Array Check %i" n
+    yield n
+|]
+
+printfn "numList: %A" numList
+printfn "numArray: %A" numArray
